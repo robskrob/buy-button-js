@@ -1087,6 +1087,21 @@ describe('Product Component class', () => {
       });
     });
 
+
+    describe('imageAltText()', () => {
+      beforeEach(async () => {
+        await product.init(testProductCopy);
+      });
+
+      it('returns the passed in image alt text if it is valid', () => {
+        assert.equal(product.imageAltText('test alt'), 'test alt');
+      })
+
+      it('returns the image title when alt text passed in is null', () => {
+        assert.equal(product.imageAltText(null), product.model.title);
+      })
+    });
+
     describe('getters', () => {
       describe('shouldUpdateImage', () => {
         beforeEach(async () => {
@@ -1144,16 +1159,20 @@ describe('Product Component class', () => {
 
       describe('image', () => {
         let imageForSizeStub;
+        let imageAltTextStub;
+        const mockAltText = 'mock alt text';
 
         beforeEach(async () => {
           await product.init(testProductCopy);
           imageForSizeStub = sinon.stub(product.props.client.image.helpers, 'imageForSize').callsFake((image, dimensions) => {
             return dimensions;
           });
+          imageAltTextStub = sinon.stub(product, 'imageAltText').returns(mockAltText);
         });
 
         afterEach(() => {
           imageForSizeStub.restore();
+          imageAltTextStub.restore();
         });
 
         it('returns null if there is no selected variant and no image with carousel in options', () => {
@@ -1197,24 +1216,30 @@ describe('Product Component class', () => {
             expectedSrcLarge = {maxWidth: 550, maxHeight: 550 * 1.5};
           });
 
-          it('returns object with id, src, srcLarge, and srcOriginal from selected image if selected image exists', () => {
+          it('returns object with id, src, srcLarge, srcOriginal, and altText from selected image if selected image exists', () => {
             product.selectedImage = {
               id: '123',
               src: 'hat.jpg',
+              altText: 'red hat',
             };
+
             const expectedObject = {
               id: product.selectedImage.id,
               src: expectedSrc,
               srcLarge: expectedSrcLarge,
               srcOriginal: product.selectedImage.src,
+              altText: mockAltText,
             };
+
             assert.deepEqual(product.image, expectedObject);
             assert.calledTwice(imageForSizeStub);
             assert.calledWith(imageForSizeStub.getCall(0), product.selectedImage, expectedSrc);
             assert.calledWith(imageForSizeStub.getCall(1), product.selectedImage, expectedSrcLarge);
+            assert.calledOnce(imageAltTextStub);
+            assert.calledWith(imageAltTextStub, product.selectedImage.altText);
           });
 
-          it('returns object with id to null and src, srcLarge, and srcOriginal to empty string if selected variant does not have an image and there are no images in the model', () => {
+          it('returns object with id to null and src, srcLarge, srcOriginal, and altText to empty string if selected variant does not have an image and there are no images in the model', () => {
             product.selectedImage = null;
             product.selectedVariant = {image: null};
             product.model.images = [];
@@ -1223,11 +1248,13 @@ describe('Product Component class', () => {
               src: '',
               srcLarge: '',
               srcOriginal: '',
+              altText: '',
             };
             assert.deepEqual(product.image, expectedObject);
+            assert.notCalled(imageAltTextStub);
           });
 
-          it('returns object with id, src, srcLarge, and srcOriginal from first image in model if selected variant does not have an image', () => {
+          it('returns object with id, src, srcLarge, srcOriginal, and altText from first image in model if selected variant does not have an image', () => {
             product.selectedImage = null;
             product.selectedVariant = {image: null};
             const firstImage = product.model.images[0];
@@ -1236,18 +1263,23 @@ describe('Product Component class', () => {
               src: firstImage.src,
               srcLarge: expectedSrcLarge,
               srcOriginal: firstImage.src,
+              altText: mockAltText,
             };
+
             assert.deepEqual(product.image, expectedObject);
             assert.calledOnce(imageForSizeStub);
             assert.calledWith(imageForSizeStub, firstImage, expectedSrcLarge);
+            assert.calledOnce(imageAltTextStub);
+            assert.calledWith(imageAltTextStub, firstImage.altText);
           });
 
-          it('returns object with id, src, srcLarge, and srcOriginal from selected variant as default', () => {
+          it('returns object with id, src, srcLarge, srcOriginal, and altText from selected variant as default', () => {
             product.selectedImage = null;
             product.selectedVariant = {
               image: {
                 id: '456',
                 src: 'top.jpg',
+                altText: 'tip top',
               },
             };
             const expectedObject = {
@@ -1255,11 +1287,14 @@ describe('Product Component class', () => {
               src: expectedSrc,
               srcLarge: expectedSrcLarge,
               srcOriginal: product.selectedVariant.image.src,
+              altText: mockAltText,
             };
             assert.deepEqual(product.image, expectedObject);
             assert.calledTwice(imageForSizeStub);
             assert.calledWith(imageForSizeStub.getCall(0), product.selectedVariant.image, expectedSrc);
             assert.calledWith(imageForSizeStub.getCall(1), product.selectedVariant.image, expectedSrcLarge);
+            assert.calledOnce(imageAltTextStub);
+            assert.calledWith(imageAltTextStub, product.selectedVariant.image.altText);
           });
         });
       });
