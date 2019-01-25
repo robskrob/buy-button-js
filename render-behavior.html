@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BuyButton.js</title>
+  </head>
+  <body>
+    <div id='product-component-a3721b1ed3e'></div>
+    <script src="tmp/buybutton.dev.js"></script>
+    <script data-shopify-buy-ui>
+      var client = ShopifyBuy.buildClient({
+        domain: 'pnd-dev.myshopify.com',
+        storefrontAccessToken: '378deb07d0bff9d016068c61ee199d1c',
+      });
+
+      var ui = ShopifyBuy.UI.init(client);
+        ui.createComponent('product', {
+            id: [2186833264753],
+            node: document.getElementById('product-component-a3721b1ed3e'),
+            moneyFormat: '%24%7B%7Bamount%7D%7D',
+            options: {
+              "product": {
+                "layout": "horizontal",
+                "variantId": "all",
+                "width": "100%",
+                "contents": {
+                  "img": false,
+                  "imgWithCarousel": true,
+                  "variantTitle": false,
+                  "description": true,
+                  "buttonWithQuantity": false,
+                  "button": false,
+                  "quantity": true,
+                  "quantityInput": true,
+                },
+                "styles": {
+                  "product": {
+                    "text-align": "left",
+                    "@media (min-width: 601px)": {
+                      "max-width": "100%",
+                      "margin-left": "0",
+                      "margin-bottom": "50px"
+                    }
+                  },
+                  "title": {
+                    "font-size": "26px"
+                  },
+                  "price": {
+                    "font-size": "18px"
+                  },
+                  "compareAt": {
+                    "font-size": "15px"
+                  }
+                },
+                "events": {
+                  "beforeRender": function(component) {
+                    console.log("beforeRendering!!!!!!!!");
+                  },
+                  "afterRender": function(component) {
+                    console.log("afterRendering!!!!!!!!");
+                  }
+                }
+              },
+              "cart": {
+                "contents": {
+                  "button": true
+                },
+                "styles": {
+                  "footer": {
+                    "background-color": "#ffffff"
+                  }
+                }
+              },
+              "modalProduct": {
+                "contents": {
+                  "img": false,
+                  "imgWithCarousel": true,
+                  "variantTitle": false,
+                  "buttonWithQuantity": true,
+                  "button": false,
+                  "quantity": false
+                },
+                "styles": {
+                  "product": {
+                    "@media (min-width: 601px)": {
+                      "max-width": "100%",
+                      "margin-left": "0px",
+                      "margin-bottom": "0px"
+                    }
+                  }
+                }
+              },
+              "productSet": {
+                "styles": {
+                  "products": {
+                    "@media (min-width: 601px)": {
+                      "margin-left": "-20px"
+                    }
+                  }
+                }
+              }
+            }
+          });
+
+
+    </script>
+  </body>
+</html>
+
