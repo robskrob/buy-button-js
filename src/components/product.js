@@ -401,13 +401,16 @@ export default class Product extends Component {
    * @return {Array}
    */
   get decoratedOptions() {
+    let variants = this.model.variants;
     return this.model.options.map((option) => {
       return {
         name: option.name,
         values: option.values.map((value) => {
+
           return {
             name: value.value,
             selected: this.selectedOptions[option.name] === value.value,
+            available: variants.find(v => v.title.trim() === value.value.trim()).available
           };
         }),
       };
