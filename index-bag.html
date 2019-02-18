@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BuyButton.js</title>
+    <style id="legacy-font-1" type="text/css">.tk-proxima-nova{font-family:"proxima-nova",sans-serif;}.tk-mrs-eaves-roman-small-caps{font-family:"mrs-eaves-roman-small-caps",sans-serif;}.tk-mrs-eaves-roman-all-small-ca{font-family:"mrs-eaves-roman-all-small-ca",sans-serif;}.tk-mrs-eaves{font-family:"mrs-eaves",serif;}</style>
+    <style id="legacy-font-2" type="text/css">@font-face{font-family:tk-proxima-nova-n7;src:url(https://use.typekit.net/af/71f83c/00000000000000003b9b093b/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3) format("woff2"),url(https://use.typekit.net/af/71f83c/00000000000000003b9b093b/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3) format("woff"),url(https://use.typekit.net/af/71f83c/00000000000000003b9b093b/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3) format("opentype");font-weight:700;font-style:normal;}@font-face{font-family:tk-proxima-nova-i7;src:url(https://use.typekit.net/af/86b539/00000000000000003b9b093a/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3) format("woff2"),url(https://use.typekit.net/af/86b539/00000000000000003b9b093a/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3) format("woff"),url(https://use.typekit.net/af/86b539/00000000000000003b9b093a/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3) format("opentype");font-weight:700;font-style:italic;}@font-face{font-family:tk-proxima-nova-n6;src:url(https://use.typekit.net/af/27776b/00000000000000003b9b0939/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n6&v=3) format("woff2"),url(https://use.typekit.net/af/27776b/00000000000000003b9b0939/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n6&v=3) format("woff"),url(https://use.typekit.net/af/27776b/00000000000000003b9b0939/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n6&v=3) format("opentype");font-weight:600;font-style:normal;}@font-face{font-family:tk-proxima-nova-n4;src:url(https://use.typekit.net/af/4838bd/00000000000000003b9b0934/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3) format("woff2"),url(https://use.typekit.net/af/4838bd/00000000000000003b9b0934/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3) format("woff"),url(https://use.typekit.net/af/4838bd/00000000000000003b9b0934/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3) format("opentype");font-weight:400;font-style:normal;}@font-face{font-family:tk-proxima-nova-i4;src:url(https://use.typekit.net/af/6aec08/00000000000000003b9b0935/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3) format("woff2"),url(https://use.typekit.net/af/6aec08/00000000000000003b9b0935/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3) format("woff"),url(https://use.typekit.net/af/6aec08/00000000000000003b9b0935/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3) format("opentype");font-weight:400;font-style:italic;}@font-face{font-family:tk-mrs-eaves-roman-small-c-n4;src:url(https://use.typekit.net/af/cb95a6/00000000000000003b9adc07/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3) format("woff2"),url(https://use.typekit.net/af/cb95a6/00000000000000003b9adc07/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3) format("woff"),url(https://use.typekit.net/af/cb95a6/00000000000000003b9adc07/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3) format("opentype");font-weight:400;font-style:normal;}@font-face{font-family:tk-mrs-eaves-roman-all-sma-n4;src:url(https://use.typekit.net/af/97a164/00000000000000003b9adc08/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3) format("woff2"),url(https://use.typekit.net/af/97a164/00000000000000003b9adc08/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3) format("woff"),url(https://use.typekit.net/af/97a164/00000000000000003b9adc08/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3) format("opentype");font-weight:400;font-style:normal;}@font-face{font-family:tk-mrs-eaves-i7;src:url(https://use.typekit.net/af/6f32cb/00000000000000003b9adc0c/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3) format("woff2"),url(https://use.typekit.net/af/6f32cb/00000000000000003b9adc0c/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3) format("woff"),url(https://use.typekit.net/af/6f32cb/00000000000000003b9adc0c/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3) format("opentype");font-weight:700;font-style:italic;}@font-face{font-family:tk-mrs-eaves-n4;src:url(https://use.typekit.net/af/b80d9a/00000000000000003b9adc0d/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3) format("woff2"),url(https://use.typekit.net/af/b80d9a/00000000000000003b9adc0d/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3) format("woff"),url(https://use.typekit.net/af/b80d9a/00000000000000003b9adc0d/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3) format("opentype");font-weight:400;font-style:normal;}@font-face{font-family:tk-mrs-eaves-n7;src:url(https://use.typekit.net/af/b9b989/00000000000000003b9adc0e/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3) format("woff2"),url(https://use.typekit.net/af/b9b989/00000000000000003b9adc0e/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3) format("woff"),url(https://use.typekit.net/af/b9b989/00000000000000003b9adc0e/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3) format("opentype");font-weight:700;font-style:normal;}@font-face{font-family:tk-mrs-eaves-i4;src:url(https://use.typekit.net/af/fb6d0c/00000000000000003b9adc0f/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3) format("woff2"),url(https://use.typekit.net/af/fb6d0c/00000000000000003b9adc0f/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3) format("woff"),url(https://use.typekit.net/af/fb6d0c/00000000000000003b9adc0f/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3) format("opentype");font-weight:400;font-style:italic;}</style><script>try{Typekit.load({ async: true });}catch(e){}</script>
+    <link rel="stylesheet" id="legacy-styles-css" href="./legacy-styles.css" type="text/css" media="all">
+    <link id="font-awesome" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <script src="https://use.typekit.net/hzr8zam.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <div id='product-component-a3721b1ed3e'></div>
+    <script src="tmp/buybutton.dev.js"></script>
+    <script data-shopify-buy-ui>
+
+      var client = ShopifyBuy.buildClient({
+        domain: 'pnd-dev.myshopify.com',
+        storefrontAccessToken: '378deb07d0bff9d016068c61ee199d1c',
+      });
+
+      window.shopifyUISingleton = ShopifyBuy.UI.init(client);
+
+
+    var bagConfig = {
+      id: [2214936084593],
+      node: document.getElementById('product-component-a3721b1ed3e'),
+      moneyFormat: '%24%7B%7Bamount%7D%7D',
+      options: {
+        option: {
+          templates: {
+            option: '' +
+              '<div class="{{data.classes.option.wrapper}}">' +
+                  '{{#data.values}}' +
+                    '<img {{#selected}}selected{{/selected}} data-available="{{available}}" data-value="{{name}}" data-option={{data.name}} class="{{data.classes.option.option}} {{#selected}}highlighted{{/selected}}" src="#">' +
+                  '{{/data.values}}' +
+              '</div>'
+          },
+          classes: {
+            'highlighted': 'highlighted'
+          },
+          styles: {
+            wrapper: {
+              "border": 'unset',
+              "border-radius": 'unset',
+              "position": 'relative',
+              "display": 'block',
+            },
+            "label":{
+              "margin-right":"10px",
+              "font-size":"11px",
+              "line-height":"18px",
+              "letter-spacing":"2px",
+              "color":"#3d3b3a"
+            },
+            option: {
+              "display": 'inline-block',
+              "border-radius": '100%',
+              "height": '20px',
+              "width": '20px',
+              "margin": '0px 6px 5px 4px',
+              "min-width": 0,
+              "max-width": 'none',
+              "border": 'none',
+              "position": 'relative',
+              "overflow": 'visible',
+              "cursor": 'pointer'
+            },
+            highlighted: {
+              "border": '1px solid white',
+              "box-shadow": '0px 0px 0px 2.5px #ccbaa3',
+              "border-radius": '50%',
+            }
+          }
+        },
+        product: {
+          templates: {
+            title: '' + '<h1 class="{{data.classes.product.title}}" data-element="product.title">{{data.title}}</h1>',
+            quantity:'<div class="{{data.classes.product.quantity}} {{data.quantityClass}}">'  +
+              '<label class="{{data.classes.option.label}}">QUANTITY:</label>' +
+              '<input class="{{data.classes.product.quantityInput}}" type="number" min="0" aria-label="Quantity" value="{{data.selectedQuantity}}" data-element="product.quantityInput">' +
+              '</div>',
+            button: '<div class="{{data.classes.product.buttonWrapper}}" data-element="product.buttonWrapper">'+
+                '<button {{#data.buttonDisabled}}disabled{{/data.buttonDisabled}} class="{{data.classes.product.button}} {{data.buttonClass}}" data-element="product.button">{{data.buttonText}}</button>'+
+                '<div class="share-links">'+
+                  '<span class="share-label">SHARE: </span>'+
+                  '<a class="fa fa-pinterest" target="_blank" href="https://pinterest.com/pin/create/button/?url=https://patricianashdesigns.com/{{data.handle}}&media={{data.currentImage.srcLarge}}&description={{data.title}}"></a>' +
+                  '<a class="fa fa-facebook" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://patricianashdesigns.com/{{data.handle}}&t={{data.title}}"></a>'+
+                  '<a class="fa fa-twitter" target="_blank" href="http://twitter.com/share?text={{data.title}}&url=https://patricianashdesigns.com/{{data.handle}}" ></a>'+
+                '</div>' +
+              '</div>',
+            imgWithCarousel: `
+              <div class="{{data.classes.product.imgWrapper}}" data-element="product.imageWrapper">
+                <div class="{{data.classes.product.carousel}}">
+                  {{#data.carouselImages}}
+                  <a data-element="product.carouselitem" aria-label="{{altText}}" href="{{src}}" class="{{data.classes.product.carouselItem}} {{#isSelected}} {{data.classes.product.carouselItemSelected}} {{/isSelected}}" data-image-id="{{id}}" style="background-image: url({{carouselSrc}})"></a>
+                  {{/data.carouselImages}}
+                </div>
+                <div class="main-image-wrapper">
+                  <button type="button" class="carousel-button carousel-button--previous">
+                    Left
+                    <img class="carousel-button-arrow" src="//sdks.shopifycdn.com/buy-button/latest/arrow.svg" alt="Carousel Arrow"/>
+                  </button>
+                  <img class="{{data.classes.product.img}}" alt="{{data.currentImage.altText}}" src="{{data.currentImage.src}}" data-element="product.img" />
+                  <button type="button" class="carousel-button carousel-button--next">
+                    Right
+                    <img class="carousel-button-arrow" src="//sdks.shopifycdn.com/buy-button/latest/arrow.svg" alt="Carousel Arrow"/>
+                  </button>
+                </div>
+              </div>`,
+          },
+          classes:{
+            "fa":"fa",
+            "share-label":"share-label",
+            "share-links":"share-links",
+            "main-image-wrapper":"main-image-wrapper"
+          },
+          styles: {
+            "imgWrapper":{
+              "display":"flex",
+              "@media (max-width: 600px)": {
+                "flex-direction":"column-reverse",
+                "width":"100% !important"
+              },
+              "@media (min-width: 601px)": {
+                "flex-direction":"row"
+              }
+            },
+            "main-image-wrapper":{
+              "@media (min-width: 601px)": {
+                "width":"85%"
+              }
+            },
+            "carousel":{
+              "@media (min-width: 601px)": {
+                "z-index":"2",
+                "width":"15%",
+                "display":"flex",
+                "flex-direction":"column",
+                "position":"relative",
+              }
+            },
+            "carouselItem":{
+              "display": "none",
+              "border":"2px solid #FFFFFF",
+              "@media (min-width: 601px)": {
+                "transition":"border-color .3s, opacity .3s",
+                "width":"100%",
+              },
+              "@media (max-width: 600px)":{
+                "margin-top":"0px !important",
+                "border-radius":"12px",
+                "background": "#ece0cf !important",
+                "border-color": "#ece0cf !important",
+                "height": "12px",
+                "width": "12px"
+              }
+            },
+            "carouselItemSelected":{
+              "border":"2px solid #ccbaa3",
+              "@media (max-width: 600px)":{
+                "opacity":"1",
+                "background": "#3d1a11 !important",
+                "border": "2px solid #3d1a11 !important"
+              }
+            },
+            "share-label":{
+              "margin-right":"10px",
+              "font-size":"11px",
+              "line-height":"18px",
+              "letter-spacing":"2px",
+              "color":"#3d3b3a"
+            },
+            "share-links":{
+              "margin-top":"20px"
+            },
+            "fa":{
+              "text-decoration":"none",
+              "display":"inline-block",
+              "margin-right":"10px",
+              "font-size":"20px !important",
+              "color":"#3d1a11"
+            },
+            "product": {
+              "padding":"0px 10px",
+              "text-align": "left",
+              "@media (min-width: 601px)": {
+                "max-width": "100%",
+                "margin-left": "0",
+                "margin-bottom": "50px"
+              }
+            },
+            "title": {
+              "font-family": 'mrs-eaves-roman-all-small-ca',
+              "font-weight": '100',
+              "font-size": '18px',
+              "margin": '0 0 11px 0',
+              "text-transform": 'uppercase',
+              "@media (max-width: 600px)":{
+                "margin-left":"0px !important"
+              }
+            },
+            "prices":{
+              "@media (max-width: 600px)":{
+                "margin-left":"0px !important"
+              }
+            },
+            "price": {
+              "font-size": "18px",
+            },
+            "options":{
+              "@media (max-width: 600px)":{
+                "margin-left":"0px !important"
+              }
+            },
+            "buttonWrapper":{
+              "@media (max-width: 600px)":{
+                "margin-left":"0px !important"
+              }
+            },
+            "button": {
+              "width":"100%",
+              "background-color": "#3d1a11",
+              "padding":"8px 14px",
+              "border-radius":"0",
+              "font-size":"12px",
+              ":hover": {
+                "background-color": "#682c1d"
+              },
+              ":focus": {
+                "background-color": "#682c1d"
+              }
+            },
+            "compareAt": {
+              "font-size": "15px"
+            },
+            "quantity":{
+              "display":"flex",
+              "@media (max-width: 600px)":{
+                "margin-left":"0px !important"
+              }
+            },
+            "description":{
+              "@media (max-width: 600px)":{
+                "margin-left":"0px !important"
+              }
+            }
+          },
+          DOMEvents: {
+            'click .shopify-buy__option-select': function (evt, target) {
+              var data = target.dataset;
+              var product = window.shopifyUISingleton.components.product[0];
+              product.updateVariant(data.option, data.value);
+              $iFrameContents = $(product.node)
+                                  .find('iframe')
+                                  .contents()
+              
+              var $carouselImages = $iFrameContents.find('.shopify-buy__carousel').children()
+              $carouselImages.show();
+
+              hideUnselectedSwatchImages($carouselImages, data.value);
+
+              $mainImage = $iFrameContents.find('.shopify-buy__product__variant-img');
+              $visibleImages = $carouselImages.not("a[style*='display: none']");
+              $mainImage.attr("src", $visibleImages[0].href);
+              $iFrameContents.find(".shopify-buy__carousel-item--selected").removeClass("shopify-buy__carousel-item--selected")
+              $($visibleImages[0]).addClass("shopify-buy__carousel-item--selected");
+              hideSwatchimage($carouselImages, data.value);
+            },
+            'click .shopify-buy__carousel-item': function(evt, target) {
+              console.log("clicking on image!!");
+            },
+            'click .carousel-button--next': function(evt, target) {
+              var elementGroups = createImageElementGroups(window.shopifyUISingleton.components.product[0]); 
+              var lastImageIndex = elementGroups.$visibleImages.length - 1;
+              if (lastImageIndex === elementGroups.indexOfSelectedImage) {
+                switchMainAndSelectedImage(elementGroups, 0);
+              } else {
+                switchMainAndSelectedImage(elementGroups, (elementGroups.indexOfSelectedImage + 1));
+              }
+            },
+            'click .carousel-button--previous': function(evt, target) {
+              var elementGroups = createImageElementGroups(window.shopifyUISingleton.components.product[0]); 
+              var firstImageIndex = 0;
+              if (firstImageIndex === elementGroups.indexOfSelectedImage) {
+                  switchMainAndSelectedImage(elementGroups, (elementGroups.$visibleImages.length - 1));
+              } else {
+                switchMainAndSelectedImage(elementGroups, (elementGroups.indexOfSelectedImage - 1));
+              }
+            }
+          },
+          "events": {
+            "beforeRender": function (component) {
+              $iFrameContents = $(component.node).find('iframe').contents();
+              
+              $head = $($iFrameContents).find('head');
+
+              if ($head.find('style').length === 1) {
+                $head.append($("#legacy-font-1").clone());
+                $head.append($("#legacy-font-2").clone());
+                $head.append($('#app\\.min-css').clone());
+                $head.append($("#font-awesome").clone());
+              }
+            },
+            "afterRender": function(component) {
+            console.log("after render!!!");
+              $iFrameContents = $(component.node)
+                                  .find('iframe')
+                                  .contents()
+              $selecteOptionValue = $iFrameContents.find("img.shopify-buy__option-select.highlighted");
+              
+              
+              var $carouselImages = $iFrameContents.find('.shopify-buy__carousel').children()
+              $carouselImages.show();
+
+              var lengthOfCarouselImages = $carouselImages.length;
+              var $optionValues = $iFrameContents.find('.shopify-buy__option-select');
+              var swatchImages = $carouselImages.slice((lengthOfCarouselImages - $optionValues.length), lengthOfCarouselImages);
+
+              assignSwatchImageTo($optionValues, swatchImages);
+
+              var selectedAriaLabel = $selecteOptionValue[0].dataset.value;
+              hideUnselectedSwatchImages($carouselImages, selectedAriaLabel);
+
+              hideSwatchimage($carouselImages, selectedAriaLabel);
+
+              hideOutOfStockOptions($iFrameContents);
+
+              switchMainAndSelectedImage({
+                $mainImage: $iFrameContents.find('.shopify-buy__product__variant-img'),
+                $selectedCarouselImage: $iFrameContents.find(".shopify-buy__carousel-item--selected"),
+                $visibleImages: $carouselImages.not("a[style*='display: none']") 
+              }, 0)
+            }
+          },
+          "layout": "horizontal",
+          "variantId": "all",
+          "width": "100%",
+          "contents": {
+            "img": false,
+            "imgWithCarousel": true,
+            "variantTitle": false,
+            "description": true,
+            "buttonWithQuantity": false,
+            "quantity": true,
+            "quantityInput": true,
+            "options": true
+          },
+        },
+        "cart": {
+          "contents": {
+            "button": true
+          },
+          "styles": {
+            "button": {
+              "background-color": "#3d1a11",
+              ":hover": {
+                "background-color": "#682c1d"
+              },
+              ":focus": {
+                "background-color": "#682c1d"
+              }
+            },
+          },
+          "popup": false
+        },
+        "modalProduct": {
+          "contents": {
+            "img": false,
+            "imgWithCarousel": true,
+            "variantTitle": false,
+            "buttonWithQuantity": true,
+            "button": false,
+            "quantity": false
+          },
+          "styles": {
+            "product": {
+              "@media (min-width: 601px)": {
+                "max-width": "100%",
+                "margin-left": "0px",
+                "margin-bottom": "0px"
+              }
+            }
+          }
+        },
+        "toggle": {
+          "sticky": false,
+          "styles": {
+            "toggle": {
+              "background-color": "#3d1a11",
+              ":hover": {
+                "background-color": "#682c1d"
+              },
+              ":focus": {
+                "background-color": "#682c1d"
+              }
+            }
+          }
+        },
+        "productSet": {
+          "styles": {
+            "products": {
+              "@media (min-width: 601px)": {
+                "margin-left": "-20px"
+              }
+            }
+          }
+        }
+      }
+    }
+
+    window.shopifyUISingleton.createComponent('product', bagConfig);
+
+
+  function assignSwatchImageTo($optionValues, swatchImages) {
+    $optionValues.each(function( index ) {
+      $optionValue = $(this);
+      var swatchImage = $.grep(swatchImages, function(element) { 
+                          return element.getAttribute('aria-label').includes($optionValue.data().value);
+                        })[0];
+      $optionValue.attr("src", swatchImage.href);
+    });
+  }
+
+  function createImageElementGroups(product) {
+    var $iFrameContents = $(product.node).find('iframe').contents();
+
+    var $carouselImages = $iFrameContents.find('.shopify-buy__carousel').children();
+
+    var $visibleImages = $carouselImages.not("a[style*='display: none']");
+
+    var $selectedCarouselImage = $iFrameContents.find(".shopify-buy__carousel-item--selected");
+
+    return {
+      "$carouselImages": $carouselImages,
+      "$iFrameContents": $iFrameContents,
+      "indexOfSelectedImage": $visibleImages.index($selectedCarouselImage),
+      "$mainImage": $iFrameContents.find('.shopify-buy__product__variant-img'),
+      "$selectedCarouselImage": $selectedCarouselImage,
+      "$visibleImages": $visibleImages,
+    };
+  }
+
+  function hideOutOfStockOptions($iFrameContents) {
+//    debugger;
+    var outOfStockOptions = $iFrameContents.find(".shopify-buy__option-select").filter(function() {
+      return !$(this).data().available
+    })
+
+    outOfStockOptions.hide();
+  }
+
+  function hideSwatchimage($carouselImages, selectedAriaLabel) {
+    $carouselImages.filter(function(index) {
+      return this.getAttribute("aria-label") === (`${selectedAriaLabel} - Swatch`);
+    }).hide();
+  }
+
+  function hideUnselectedSwatchImages($carouselImages, selectedAriaLabel) {
+    $carouselImages.filter(function(index) {
+      return !this.getAttribute("aria-label").includes(selectedAriaLabel);
+    }).hide();
+  }
+
+  function switchMainAndSelectedImage(elementGroups, index) {
+    nextImage = elementGroups.$visibleImages[index];
+    elementGroups.$mainImage.attr("src", nextImage.href);
+    $(nextImage).addClass("shopify-buy__carousel-item--selected");
+    elementGroups.$selectedCarouselImage.removeClass("shopify-buy__carousel-item--selected");
+  }
+
+    </script>
+  </body>
+</html>
