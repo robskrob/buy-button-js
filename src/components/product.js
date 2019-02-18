@@ -758,8 +758,9 @@ export default class Product extends Component {
     if (this.defaultStorefrontVariantId) {
       selectedVariant = model.variants.find((variant) => variant.id === this.defaultStorefrontVariantId);
     } else {
-      this.defaultStorefrontVariantId = model.variants[0].id;
-      selectedVariant = model.variants[0];
+      let availableVariant = model.variants.find(variant => variant.available);
+      this.defaultStorefrontVariantId = availableVariant.id;
+      selectedVariant = availableVariant;
       this.selectedImage = model.images[0];
     }
 
